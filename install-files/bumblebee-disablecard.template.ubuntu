@@ -6,6 +6,11 @@
 #
 # http://linux-hybrid-graphics.blogspot.com/2010/07/using-acpicall-module-to-switch-onoff.html
 
+if lsmod | grep -q nvidia; then
+    echo "Skipping: nVidia Card already enabled"
+    exit
+fi
+
 rmmod nvidia
 if lsmod | grep -q nvidia; then
  echo "Error: could not unload nvidia module, leaving card turned on"
